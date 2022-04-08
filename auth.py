@@ -22,7 +22,6 @@ def get_auth():
 
     access_token = auth_response_data['access_token']
 
-
     return access_token
 
 if __name__ == '__main__':
