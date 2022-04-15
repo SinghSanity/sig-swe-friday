@@ -1,3 +1,4 @@
+'''The main Flask App file'''
 from flask import Flask, render_template
 from data import get_data
 
@@ -5,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-
+    '''This function renders the index.html file'''
     data = get_data()
 
     return render_template(
@@ -21,4 +22,3 @@ if __name__ == '__main__':
     app.run(
         debug=True,
     )
-
