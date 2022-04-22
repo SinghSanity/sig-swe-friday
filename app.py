@@ -2,8 +2,10 @@
 from flask import Flask, render_template
 from data import get_data
 import random
+import os
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def hello():
@@ -13,7 +15,7 @@ def hello():
     artist_list = ['6M2wZ9GZgrQXHCFfjv46we', '5K4W6rqBFWDnAN6FQUkS6x', '5cj0lLjcoR7YOSnhnX0Po5']
 
     rand = random.randint(0, len(artist_list) - 1)
-    
+
     data = get_data(artist_list[rand])
 
     return render_template(
@@ -28,4 +30,6 @@ def hello():
 if __name__ == '__main__':
     app.run(
         debug=True,
+        host=os.getenv('IP', '0.0.0.0'),
+        port=int(os.getenv('PORT', 8080))
     )
